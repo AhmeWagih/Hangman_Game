@@ -1,0 +1,256 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Tahoma", Arial;
+}
+.container {
+  margin: 20px auto;
+  width: 1000px;
+}
+.row {
+  display: flex;
+}
+hr {
+  border: 1px solid #eee;
+}
+.game-info {
+  display: flex;
+  margin-bottom: 5px;
+}
+.game-info .game-name {
+  flex: 1;
+}
+.game-info .category {
+  flex: 1;
+  text-align: right;
+}
+.game-info .category span {
+  text-transform: capitalize;
+  color: #e91e63;
+  font-weight: bold;
+}
+.hangman-draw {
+  flex: 1;
+  background-color: #f8f8f8;
+  padding: 20px;
+  height: 324px;
+}
+.the-draw {
+  width: 60px;
+  height: 280px;
+  border-bottom: 4px solid #222;
+  position: absolute;
+  margin: auto;
+  display: none;
+}
+.the-stand {
+  display: none;
+}
+.the-stand::before {
+  content: "";
+  position: absolute;
+  width: 4px;
+  background-color: #222;
+  height: 100%;
+  left: 50%;
+  margin-left: -2px;
+}
+.the-hang {
+  display: none;
+}
+.the-hang::before {
+  content: "";
+  position: absolute;
+  height: 4px;
+  background-color: #222;
+  width: 100px;
+  left: 30px;
+  top: 20px;
+}
+.the-hang::after {
+  content: "";
+  position: absolute;
+  width: 4px;
+  background-color: #222;
+  height: 30px;
+  left: 130px;
+  top: 20px;
+}
+.the-rope {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  position: absolute;
+  left: 95px;
+  top: 50px;
+  border: 4px dashed #222;
+  display: none;
+}
+.the-man .head {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: absolute;
+  left: 105px;
+  top: 60px;
+  border: 4px solid #222;
+  display: none;
+}
+.body {
+  position: absolute;
+  background-color: #222;
+  width: 4px;
+  height: 120px;
+  top: 106px;
+  left: 130px;
+  display: none;
+}
+.hands {
+  display: none;
+}
+.hands::before {
+  content: "";
+  width: 50px;
+  position: absolute;
+  height: 4px;
+  background-color: #222;
+  left: 85px;
+  top: 140px;
+  transform: rotate(30deg);
+}
+.hands::after {
+  content: "";
+  width: 50px;
+  position: absolute;
+  height: 4px;
+  background-color: #222;
+  left: 130px;
+  top: 140px;
+  transform: rotate(-30deg);
+}
+.legs {
+  display: none;
+}
+.legs::before {
+  content: "";
+  width: 50px;
+  position: absolute;
+  height: 4px;
+  background-color: #222;
+  left: 85px;
+  top: 235px;
+  transform: rotate(-30deg);
+}
+.legs::after {
+  content: "";
+  width: 50px;
+  position: absolute;
+  height: 4px;
+  background-color: #222;
+  left: 130px;
+  top: 235px;
+  transform: rotate(30deg);
+}
+.hangman-draw.wrong-1 .the-draw {
+  display: block;
+}
+.hangman-draw.wrong-2 .the-stand {
+  display: block;
+}
+.hangman-draw.wrong-3 .the-hang {
+  display: block;
+}
+.hangman-draw.wrong-4 .the-rope {
+  display: block;
+}
+.hangman-draw.wrong-5 .head {
+  display: block;
+}
+.hangman-draw.wrong-6 .body {
+  display: block;
+}
+.hangman-draw.wrong-7 .hands {
+  display: block;
+}
+.hangman-draw.wrong-8 .legs {
+  display: block;
+}
+.letters {
+  flex: 1;
+  padding: 15px;
+  text-align: center;
+}
+.letters.finished {
+  pointer-events: none;
+}
+.letter-box {
+  width: 55px;
+  height: 55px;
+  display: inline-block;
+  background-color: #009688;
+  color: #fff;
+  font-size: 24px;
+  margin-right: 10px;
+  line-height: 55px;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+.letter-box.clicked {
+  background-color: #222;
+  opacity: 0.2;
+  pointer-events: none;
+}
+.letters-guess {
+  margin: 10px auto;
+  background-color: #f8f8f8;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  min-height: 104px;
+}
+.letters-guess span {
+  width: 60px;
+  height: 60px;
+  font-size: 20px;
+  margin-right: 10px;
+  text-align: center;
+  line-height: 60px;
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: #fdfdfd;
+  border-bottom: 3px solid #222;
+  transition: 0.3s;
+}
+.letters-guess span.with-space {
+  background: none;
+  border-bottom: none;
+  position: relative;
+}
+.letters-guess span.with-space::before {
+  content: "";
+  width: 20px;
+  height: 4px;
+  background-color: #222;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50% , -50%);
+}
+.popup {
+  position: fixed;
+  background-color: #009688;
+  padding: 100px 20px;
+  width: 80%;
+  top: 10%;
+  left: 10%;
+  text-align: center;
+  font-size: 40px;
+  border: 1px solid #CCC;
+  color: #FFF;
+  opacity: 0.8;
+}
